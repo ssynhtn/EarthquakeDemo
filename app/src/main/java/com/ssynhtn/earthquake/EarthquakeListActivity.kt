@@ -3,15 +3,18 @@ package com.ssynhtn.earthquake
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
+import com.google.android.gms.maps.model.LatLng
 import com.ssynhtn.earthquake.databinding.ActivityEarthquakeListBinding
+import com.ssynhtn.earthquake.model.ui.Earthquake
 
-class EarthquakeListActivity : ComponentActivity() {
+class EarthquakeListActivity : AppCompatActivity(), OnItemClickListener<Earthquake> {
 
     private lateinit var binding: ActivityEarthquakeListBinding
     private val viewModel by viewModels<EarthquakeListViewModel>()
-    private val adapter = EarthquakeAdapter()
+    private val adapter = EarthquakeAdapter().also { it.onItemClickListener = this }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,10 @@ class EarthquakeListActivity : ComponentActivity() {
                 binding.swipeRefresh.isRefreshing = it
             }
         }
+    }
+
+    override fun onItemClick(item: Earthquake) {
+        MapActivity.start(this, LatLng(item.coordinate.latitude, item.coordinate.longitude), item.place)
     }
 }
 
