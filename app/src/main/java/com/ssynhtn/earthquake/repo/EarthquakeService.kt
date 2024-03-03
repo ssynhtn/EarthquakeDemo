@@ -18,6 +18,9 @@ interface EarthquakeService {
     ): EarthquakeData
 }
 
+/**
+ * this object hosts all server api
+ */
 object Api {
     val earthquakeService: EarthquakeService
 

@@ -10,6 +10,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.ssynhtn.earthquake.databinding.ActivityEarthquakeListBinding
 import com.ssynhtn.earthquake.model.ui.Earthquake
 
+/**
+ * uses MVVM pattern
+ */
 class EarthquakeListActivity : AppCompatActivity(), OnItemClickListener<Earthquake> {
 
     private lateinit var binding: ActivityEarthquakeListBinding

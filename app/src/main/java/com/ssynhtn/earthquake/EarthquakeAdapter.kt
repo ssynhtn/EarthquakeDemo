@@ -24,16 +24,13 @@ class EarthquakeAdapter :
     var onItemClickListener: OnItemClickListener<Earthquake>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         return CardViewHolder(
-            ItemEarthquakeBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            ),
+            ItemEarthquakeBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onItemClickListener
         )
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+        // delegates binding logic to view holder
         holder.bind(getItem(position))
     }
 }

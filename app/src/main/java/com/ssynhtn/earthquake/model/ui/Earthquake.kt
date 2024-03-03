@@ -15,6 +15,9 @@ data class Earthquake(
         get() = magnitude >= 7.5
 
     companion object {
+        /**
+         * convert from server data model to ui data model
+         */
         fun fromFeatures(features: Features): Earthquake {
             val coordinate = Coordinate.fromGeometry(features.geometry)
             return Earthquake(
