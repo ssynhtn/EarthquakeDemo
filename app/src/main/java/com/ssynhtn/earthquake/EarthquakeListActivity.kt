@@ -2,12 +2,10 @@ package com.ssynhtn.earthquake
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
-import androidx.recyclerview.widget.SnapHelper
 import com.google.android.gms.maps.model.LatLng
 import com.ssynhtn.earthquake.databinding.ActivityEarthquakeListBinding
 import com.ssynhtn.earthquake.model.ui.Earthquake
