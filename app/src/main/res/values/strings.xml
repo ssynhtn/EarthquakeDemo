@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">EarthquakeDemo</string>
+    <string name="activity_earthquake_list">Earthquake List</string>
+</resources>
