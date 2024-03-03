@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.gms.maps.model.LatLng
 import com.ssynhtn.earthquake.databinding.ActivityEarthquakeListBinding
 import com.ssynhtn.earthquake.model.ui.Earthquake
+import com.ssynhtn.earthquake.repo.RealEarthquakeRepo
 
 /**
  * uses MVVM pattern
@@ -16,7 +17,9 @@ import com.ssynhtn.earthquake.model.ui.Earthquake
 class EarthquakeListActivity : AppCompatActivity(), OnItemClickListener<Earthquake> {
 
     private lateinit var binding: ActivityEarthquakeListBinding
-    private val viewModel by viewModels<EarthquakeListViewModel>()
+    private val viewModel by viewModels<EarthquakeListViewModel>(factoryProducer = {
+        EarthquakeListViewModel.Factory(RealEarthquakeRepo())
+    })
     private val adapter = EarthquakeAdapter().also { it.onItemClickListener = this }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +31,9 @@ class EarthquakeListActivity : AppCompatActivity(), OnItemClickListener<Earthqua
         initViews()
         initObservers()
 
+        if (savedInstanceState == null) {
+            viewModel.refresh()
+        }
     }
 
     private fun initViews() {
@@ -57,7 +63,11 @@ class EarthquakeListActivity : AppCompatActivity(), OnItemClickListener<Earthqua
     }
 
     override fun onItemClick(item: Earthquake) {
-        MapActivity.start(this, LatLng(item.coordinate.latitude, item.coordinate.longitude), item.place)
+        MapActivity.start(
+            this,
+            LatLng(item.coordinate.latitude, item.coordinate.longitude),
+            item.place
+        )
     }
 }
 
