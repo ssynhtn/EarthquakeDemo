@@ -1,5 +1,7 @@
 package com.ssynhtn.earthquake
 
+import com.google.gson.Gson
+import com.ssynhtn.earthquake.model.Earthquake
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -11,7 +13,12 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testGson() {
+        val text = "{}"
+        val quake = Gson().fromJson(text, Earthquake::class.java)
+        println(quake)
+        assertEquals(0, quake.time)
+        assertEquals("", quake.magnitude)
+
     }
 }
