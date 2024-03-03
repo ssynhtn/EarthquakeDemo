@@ -14,7 +14,6 @@ class MainDispatcherRule(
     val testDispatcher: TestDispatcher = UnconfinedTestDispatcher(),
 ) : TestWatcher() {
     override fun starting(description: Description) {
-        println("starting here")
         Dispatchers.setMain(testDispatcher)
     }
 

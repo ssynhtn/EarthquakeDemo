@@ -9,6 +9,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import java.lang.RuntimeException
 import kotlin.random.Random
 
 @RunWith(RobolectricTestRunner::class)
@@ -31,7 +32,16 @@ class EarthquakeViewModelTest {
         val viewModel = EarthquakeListViewModel(FakeRepo(data))
 
         viewModel.refresh(coroutineRule.testDispatcher)
-        assertEquals(data, viewModel.items.value)
+        assertEquals(data, viewModel.items.value?.getOrNull())
+    }
+
+    @Test
+    fun testFetchFailure() {
+        val ex = RuntimeException()
+        val viewModel = EarthquakeListViewModel(FakeRepo(ex))
+
+        viewModel.refresh(coroutineRule.testDispatcher)
+        assertEquals(ex, viewModel.items.value?.exceptionOrNull())
     }
 
     private fun randomEarthquake(): Earthquake {
@@ -48,8 +58,13 @@ class EarthquakeViewModelTest {
 }
 
 class FakeRepo(private val data: List<Earthquake>) : EarthquakeRepo {
+    var ex: Exception? = null
+    constructor(ex: Exception) : this(emptyList()) {
+        this.ex = ex
+    }
     override suspend fun fetch(): List<Earthquake> {
         Thread.sleep(1000)
+        ex?.let { throw it }
         return data
     }
 

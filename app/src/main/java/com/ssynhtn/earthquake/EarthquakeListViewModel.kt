@@ -17,15 +17,19 @@ class EarthquakeListViewModel(private val repo: EarthquakeRepo) : ViewModel() {
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    val _items = MutableLiveData<List<Earthquake>>()
-    val items: LiveData<List<Earthquake>> = _items
+    private val _items = MutableLiveData<Result<List<Earthquake>>>()
+    val items: LiveData<Result<List<Earthquake>>> = _items
 
 
     fun refresh(dispatcher: CoroutineDispatcher = Dispatchers.IO) {
         _loading.value = true
         viewModelScope.launch {
             val items = withContext(dispatcher) {
-                repo.fetch()
+                try {
+                    Result.success(repo.fetch())
+                } catch (ex: Exception) {
+                    Result.failure(ex)
+                }
             }
 
             _loading.value = false
