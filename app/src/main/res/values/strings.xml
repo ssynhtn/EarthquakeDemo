@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">EarthquakeDemo</string>
     <string name="activity_earthquake_list">Earthquake List</string>
+    <string name="location">Location: %1$s</string>
+    <string name="time">Time: %1$s</string>
 </resources>

@@ -7,9 +7,12 @@ data class Earthquake(
     val id: String = "",
     val time: Long = 0,
     val place: String = "",
-    val magnitude: String = "",
+    val magnitude: Double = 0.0,
     val coordinate: Coordinate = Coordinate()
 ) {
+
+    val strong: Boolean
+        get() = magnitude >= 7.5
 
     companion object {
         fun fromFeatures(features: Features): Earthquake {

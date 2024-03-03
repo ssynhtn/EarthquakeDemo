@@ -29,9 +29,16 @@ class EarthquakeAdapter : ListAdapter<Earthquake, CardViewHolder>(object : DiffU
 }
 
 class CardViewHolder(private val binding: ItemEarthquakeBinding) : RecyclerView.ViewHolder(binding.root) {
+    private val context = binding.root.context
     fun bind(earthquake: Earthquake) {
-        binding.textMagnitude.text = earthquake.magnitude
-        binding.textPlace.text = earthquake.place
-        binding.textTime.text = TimeUtil.formatDate(earthquake.time)
+        binding.textMagnitude.text = String.format("%.1f", earthquake.magnitude)
+        val colorRes = if (earthquake.strong) {
+            android.R.color.holo_red_dark
+        } else {
+            R.color.colorPrimary
+        }
+        binding.textMagnitude.setTextColor(context.getColor(colorRes))
+        binding.textPlace.text = context.getString(R.string.location, earthquake.place)
+        binding.textTime.text = context.getString(R.string.time, TimeUtil.formatDate(earthquake.time))
     }
 }
