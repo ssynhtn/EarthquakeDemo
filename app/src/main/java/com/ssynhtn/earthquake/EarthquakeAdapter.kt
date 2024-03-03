@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ssynhtn.earthquake.databinding.ItemEarthquakeBinding
-import com.ssynhtn.earthquake.model.Earthquake
+import com.ssynhtn.earthquake.model.ui.Earthquake
 import com.ssynhtn.earthquake.util.TimeUtil
 
 class EarthquakeAdapter : ListAdapter<Earthquake, CardViewHolder>(object : DiffUtil.ItemCallback<Earthquake>() {

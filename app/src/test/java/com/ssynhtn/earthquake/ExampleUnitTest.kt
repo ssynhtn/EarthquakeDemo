@@ -1,7 +1,7 @@
 package com.ssynhtn.earthquake
 
 import com.google.gson.Gson
-import com.ssynhtn.earthquake.model.Earthquake
+import com.ssynhtn.earthquake.model.ui.Earthquake
 import org.junit.Test
 
 import org.junit.Assert.*
