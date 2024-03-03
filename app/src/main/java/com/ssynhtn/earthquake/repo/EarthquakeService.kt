@@ -22,16 +22,7 @@ object Api {
     val earthquakeService: EarthquakeService
 
     init {
-        val builder = OkHttpClient.Builder()
-        builder.connectionSpecs(listOf(
-            ConnectionSpec.CLEARTEXT,
-            ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
-                .allEnabledTlsVersions()
-                .allEnabledCipherSuites()
-                .build()))
-        val client = builder.build()
         val retrofit = Retrofit.Builder()
-            .client(client)
             .baseUrl("https://earthquake.usgs.gov/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
