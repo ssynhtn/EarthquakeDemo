@@ -3,5 +3,5 @@
     <string name="activity_earthquake_list">Earthquake List</string>
     <string name="location">Location: %1$s</string>
     <string name="time">Time: %1$s</string>
-    <string name="toast_fetch_failed">Fetch failed</string>
+    <string name="toast_fetch_failed">Fetch failed %1$s</string>
 </resources>

@@ -55,7 +55,7 @@ class EarthquakeListActivity : AppCompatActivity(), OnItemClickListener<Earthqua
                     adapter.submitList(it.getOrNull())
                 } else {
                     adapter.submitList(null)
-                    Toast.makeText(this, getString(R.string.toast_fetch_failed), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_fetch_failed, it.exceptionOrNull()?.toString() ?: ""), Toast.LENGTH_SHORT).show()
                 }
             }
         }
