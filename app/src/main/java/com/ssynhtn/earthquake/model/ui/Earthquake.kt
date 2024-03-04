@@ -1,6 +1,6 @@
 package com.ssynhtn.earthquake.model.ui
 
-import com.example.example.Geometry
+import com.ssynhtn.earthquake.model.data.Geometry
 import com.ssynhtn.earthquake.model.data.Features
 
 data class Earthquake(

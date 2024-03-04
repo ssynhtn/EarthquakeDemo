@@ -1,4 +1,4 @@
-package com.example.example
+package com.ssynhtn.earthquake.model.data
 
 import com.google.gson.annotations.SerializedName
 

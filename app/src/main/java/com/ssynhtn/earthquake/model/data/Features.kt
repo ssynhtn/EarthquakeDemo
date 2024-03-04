@@ -1,6 +1,5 @@
 package com.ssynhtn.earthquake.model.data
 
-import com.example.example.Geometry
 import com.google.gson.annotations.SerializedName
 
 
